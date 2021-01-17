@@ -8,18 +8,16 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.nitok_ict.socialgen.socialgen_app.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.nitok_ict.socialgen.socialgen_app.ui.dashboard.DashboardFragment"
-        android:label="@string/title_reinforcement"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_reinforcement"
+        android:name="com.nitok_ict.socialgen.socialgen_app.ui.reinforcement.ReinforcementFragment"
+        tools:layout="@layout/fragment_reinforcement" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.nitok_ict.socialgen.socialgen_app.ui.notifications.NotificationsFragment"
-        android:label="@string/title_ranking"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_ranking"
+        android:name="com.nitok_ict.socialgen.socialgen_app.ui.ranking.RankingFragment"
+        tools:layout="@layout/fragment_ranking" />
 </navigation>

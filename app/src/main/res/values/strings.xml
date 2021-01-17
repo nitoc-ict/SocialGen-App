@@ -3,4 +3,8 @@
     <string name="title_home">ホーム</string>
     <string name="title_reinforcement">強化</string>
     <string name="title_ranking">ランキング</string>
+    <string name="money_unit">円</string>
+    <string name="money_possession">所持金</string>
+    <string name="anti_covid19_point_today">今日のポイント</string>
+    <string name="anti_covid19_point_unit">pt</string>
 </resources>
