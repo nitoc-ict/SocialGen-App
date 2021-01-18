@@ -49,4 +49,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation "androidx.recyclerview:recyclerview:1.1.0"   //recyclerviewを使うためのライブラリ
+
+    //core
+    implementation 'com.github.kittinunf.fuel:fuel:2.2.0'
+    //packages
+    implementation 'com.github.kittinunf.fuel:fuel-android:2.2.0'
 }
