@@ -27,5 +27,6 @@ class RankingFragment : Fragment() {
             textView.text = it
         })
         return root
+
     }
 }

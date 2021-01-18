@@ -49,4 +49,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation "androidx.recyclerview:recyclerview:1.1.0"   //recyclerviewを使うためのライブラリ
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6"   //JackSONを使うためのライブラリ
 }
