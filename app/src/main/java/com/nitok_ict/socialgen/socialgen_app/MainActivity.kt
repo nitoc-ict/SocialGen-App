@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.nitok_ict.socialgen.socialgen_app.model.ServerCommunicationModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,5 +23,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val communication = ServerCommunicationModel()
+        communication.getRanking()
     }
 }
