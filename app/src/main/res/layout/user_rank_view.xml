@@ -9,8 +9,7 @@
             name="userRank"
             type="com.nitok_ict.socialgen.socialgen_app.model.UserRank" />
 </data>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -41,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:text="@{userRank.score.toString()}"
+                    android:text="@{userRank.score}"
                     android:gravity="end"
                     android:textSize="16sp"/>
                 <TextView

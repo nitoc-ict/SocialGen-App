@@ -11,15 +11,11 @@ class RankingViewModel : ViewModel() {
 
     private val rankingModel = ServerCommunicationModel()
 
-    private val _rankingDataList = MutableLiveData<List<UserRank>>(emptyList())
-    val rankingLiveData: LiveData<List<UserRank>> = _rankingDataList.distinctUntilChanged()
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "ランキング"
-    }
-    val text: LiveData<String> = _text
+    private val _rankingLiceData = MutableLiveData<List<UserRank>>(emptyList())
+    val rankingLiveData: LiveData<List<UserRank>> = _rankingLiceData.distinctUntilChanged()
+    var rankingName = "ランキング"
 
     fun getRanking() {
-        _rankingDataList.value = rankingModel.getRanking()
+        _rankingLiceData.value = rankingModel.getRanking()
     }
 }

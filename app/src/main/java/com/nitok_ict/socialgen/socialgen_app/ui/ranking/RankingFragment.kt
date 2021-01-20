@@ -4,28 +4,59 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.nitok_ict.socialgen.socialgen_app.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.nitok_ict.socialgen.socialgen_app.databinding.RankingFragmentBinding
 
 class RankingFragment : Fragment() {
+    companion object{
+        fun newInstance() = RankingFragment()
+    }
 
-    private lateinit var rankingViewModel: RankingViewModel
+    private val viewModel: RankingViewModel by viewModels()
+    private lateinit var userRankListAdapter: UserRankListAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        rankingViewModel =
-                ViewModelProvider(this).get(RankingViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_ranking, container, false)
-        val textView: TextView = root.findViewById(R.id.text_ranking)
-        rankingViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    ): View {
+        return RankingFragmentBinding.inflate(inflater, container, false)
+            .apply {
+            lifecycleOwner = viewLifecycleOwner
+            this.viewModel = this@RankingFragment.viewModel
+
+
+            rankinRecyclerView.run {
+                layoutManager = LinearLayoutManager(context)
+                addItemDecoration(
+                    DividerItemDecoration(
+                        context,
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
+                adapter =
+                    UserRankListAdapter(viewLifecycleOwner, this@RankingFragment.viewModel).also {
+                        userRankListAdapter = it
+                    }
+            }
+        }.run {
+            root
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel.getRanking()
+
+        viewModel.run {
+            rankingLiveData.observe(viewLifecycleOwner, {
+                userRankListAdapter.submitList(it)
+            })
+        }
     }
 }
