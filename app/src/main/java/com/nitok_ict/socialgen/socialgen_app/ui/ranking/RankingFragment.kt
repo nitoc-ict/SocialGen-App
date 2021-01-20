@@ -27,8 +27,7 @@ class RankingFragment : Fragment() {
         return RankingFragmentBinding.inflate(inflater, container, false)
             .apply {
             lifecycleOwner = viewLifecycleOwner
-            this.viewModel = this@RankingFragment.viewModel
-
+            viewModel = this@RankingFragment.viewModel
 
             rankinRecyclerView.run {
                 layoutManager = LinearLayoutManager(context)

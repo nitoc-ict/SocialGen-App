@@ -6,7 +6,11 @@ import com.github.kittinunf.result.Result
 
 data class UserRank(val userName:String,
                     val rank:Int,
-                    val score:Int)
+                    val score:Long){
+    fun getRankAsString() = rank.toString()
+
+    fun getScoreAsString() = score.toString()
+}
 
 class ServerCommunicationModel()
 {
