@@ -19,5 +19,5 @@
     <fragment
         android:id="@+id/navigation_ranking"
         android:name="com.nitok_ict.socialgen.socialgen_app.ui.ranking.RankingFragment"
-        tools:layout="@layout/fragment_ranking" />
+        tools:layout="@layout/ranking_fragment" />
 </navigation>
