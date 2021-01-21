@@ -8,7 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.nitok_ict.socialgen.socialgen_app.model.ServerCommunicationModel
+import com.nitok_ict.socialgen.socialgen_app.model.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,8 +25,24 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        val communicationListner = object : ServerCommunicationInterface{
+            override fun onSuccess() {
+                Log.d("Debug", "Accept")
+            }
+
+            override fun onFailure() {
+                Log.d("Debug", "Failure")
+            }
+
+            override fun onTry() {
+                Log.d("Debug", "Trying...")
+            }
+        }
         val communication = ServerCommunicationModel()
-        communication.getRanking()
+        communication.getRanking(communicationListner)
+        communication.getUserTotalScore(communicationListner)
+        communication.postEntryUserData(EntryUserData("hoge", "Okinawa"), communicationListner)
+        communication.postUserResultData(UserResultData("181305", "12345"), communicationListner)
         //Log.d("Debug", "MainActivity:$test")
     }
 }
