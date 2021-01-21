@@ -6,7 +6,6 @@ import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.httpPost
 
 
@@ -37,8 +36,12 @@ data class UserResultData(
 
 class ServerCommunicationModel()
 {
-    private val _userRankingList = MediatorLiveData<List<UserData>>()
-    val userRankingList:LiveData<List<UserData>> = _userRankingList
+    private val _userDataList = MediatorLiveData<List<UserData>>()
+    val userDataList:LiveData<List<UserData>> = _userDataList   //Jsonから変換したリスト
+
+    private val _userRankList = MediatorLiveData<List<UserRank>>()
+    val userRankList:LiveData<List<UserRank>> = _userRankList   //ViewModelが参照するリスト。userDataListをどうにかLiveData<List<UserRank>>に変換して格納して欲しい
+
     private val _userTotalScore = MediatorLiveData<String>()
     val userTotalScore:LiveData<String> = _userTotalScore
     fun getRanking(listener:ServerCommunicationInterface){
@@ -56,9 +59,9 @@ class ServerCommunicationModel()
                     Log.d("Debug",
                             "getRanking_Success_origin:$data")
                     val mapper = jacksonObjectMapper()
-                    this._userRankingList.value = mapper.readValue<List<UserData>>(data)
+                    this._userDataList.value = mapper.readValue<List<UserData>>(data)
                     Log.d("Debug",
-                            "getRanking_Success:${this._userRankingList.value}")
+                            "getRanking_Success:${this._userDataList.value}")
                     listener.onSuccess()
                 }
             }

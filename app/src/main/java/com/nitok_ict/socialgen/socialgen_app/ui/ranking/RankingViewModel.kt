@@ -3,7 +3,6 @@ package com.nitok_ict.socialgen.socialgen_app.ui.ranking
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.distinctUntilChanged
 import com.nitok_ict.socialgen.socialgen_app.model.ServerCommunicationInterface
 import com.nitok_ict.socialgen.socialgen_app.model.ServerCommunicationModel
 import com.nitok_ict.socialgen.socialgen_app.model.UserRank
@@ -12,13 +11,12 @@ class RankingViewModel : ViewModel() {
 
     private val rankingModel = ServerCommunicationModel()
 
-    private val _rankingLiceData = MutableLiveData<List<UserRank>>(emptyList())
-    val rankingLiveData: LiveData<List<UserRank>> = _rankingLiceData.distinctUntilChanged()
+    val rankingLiveData: LiveData<List<UserRank>> = rankingModel.userRankList
+    val userTotalPoint = rankingModel.userTotalScore
 
     private val _rankingName = MutableLiveData<String>().apply { value = "ランキング" }
     val rankingName: LiveData<String> = _rankingName
 
-    val userTotalPoint = rankingModel.userTotalScore
 
     private val _isDataLoading = MutableLiveData<Boolean>().apply { value = true }
     private val _isDataLoaded = MutableLiveData<Boolean>().apply { value = false }
