@@ -50,7 +50,7 @@ class RankingFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.getRanking()
+        viewModel.getData()
 
         viewModel.run {
             rankingLiveData.observe(viewLifecycleOwner, {

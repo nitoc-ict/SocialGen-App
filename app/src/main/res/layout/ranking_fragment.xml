@@ -4,38 +4,161 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View"/>
+
         <variable
             name="viewModel"
             type="com.nitok_ict.socialgen.socialgen_app.ui.ranking.RankingViewModel"/>
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ranking.RankingFragment">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="#40000000"
-            android:layout_height="48dp">
+            android:layout_height="48dp"
+            android:background="#40000000">
 
             <TextView
                 android:id="@+id/text_ranking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@{viewModel.rankingName}"
-                android:layout_gravity="center"
                 android:textSize="32sp" />
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rankin_recycler_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="48dp"
-            android:paddingBottom="128dp" />
+            android:orientation="vertical"
+            android:visibility="@{viewModel.isDataLoaded ? View.VISIBLE : View.GONE}">
 
-    </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_total_point"
+                    android:textSize="24sp" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="0dp" />
+
+
+                <TextView
+                    android:id="@+id/text_item_ranking_score"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:gravity="end"
+                    android:text="@{viewModel.userTotalPoint}"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pt"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rankin_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingTop="48dp"
+                android:paddingBottom="128dp" />
+
+            <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/text_item_ranking_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{getRankAsString()}"
+                android:textSize="24sp"
+                android:gravity ="end"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="位"
+                android:textSize="24sp"/>
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="0dp"/>
+                <TextView
+                    android:id="@+id/text_item_ranking_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{userRank.userName}"
+                    android:textSize="24sp"/>
+                <TextView
+                    android:id="@+id/text_item_ranking_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="@{userRank.getScoreAsString()}"
+                    android:gravity="end"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pt"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+                -->
+
+        </LinearLayout>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isDataLoading ? View.VISIBLE : View.GONE}"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.isDataLoadFailed ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/load_failed_message"
+                app:layout_constraintBottom_toTopOf="@+id/materialButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retry"
+                android:onClick="@{() -> viewModel.getData()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 </layout>
