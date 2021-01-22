@@ -8,31 +8,29 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.kittinunf.fuel.httpPost
 
-
 data class UserRank(val userName:String,
                     val rank:Int,
                     val score:Long){
     fun getRankAsString() = rank.toString()
-
     fun getScoreAsString() = score.toString()
 }
+
 data class UserData(
-    val id:Int,
-    val name:String,
-    val score:Long
+        val rank: Int,
+        val id: String,
+        val userName: String,
+        val score: Long
 )
 
 data class EntryUserData(
-    val name:String,
-    val pref:String
+        val name:String,
+        val pref:String
 )
 
 data class UserResultData(
-    val id: String,
-    val score: String
+        val id: String,
+        val score: String
 )
-
-
 
 class ServerCommunicationModel()
 {

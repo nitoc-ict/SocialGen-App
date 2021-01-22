@@ -33,6 +33,7 @@ class RankingViewModel : ViewModel() {
 
         override fun onSuccess() {
             _isDataLoading.value = false
+            _isDataLoaded.value = true
         }
 
         override fun onFailure() {
