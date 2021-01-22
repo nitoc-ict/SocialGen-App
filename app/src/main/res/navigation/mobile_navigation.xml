@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_reinforcement"
         android:name="com.nitok_ict.socialgen.socialgen_app.ui.reinforcement.ReinforcementFragment"
-        tools:layout="@layout/fragment_reinforcement" />
+        tools:layout="@layout/reinforcement_fragment" />
 
     <fragment
         android:id="@+id/navigation_ranking"

@@ -14,18 +14,19 @@ class UserDataModel (context: Context){
     private var isDataLoaded = false
 
     fun getUserData(): UserData {
-        if (isDataLoaded){
-            return _userData
-        } else {
-            throw Exception("UserDataNotLoaded.")
+        if (!isDataLoaded){
+            if(!loadUserData()){
+                throw Exception("SaveDataNotExist")
+            }
         }
+        return _userData
     }
 
-    fun postUserData(userData: UserData){
+    fun setUserData(userData: UserData){
         _userData = userData
     }
 
-    fun loadUserData(): Boolean {
+    private fun loadUserData(): Boolean {
         if (saveDataFile.exists()){
             val mapper = jacksonObjectMapper()
             val json = saveDataFile.bufferedReader().use(BufferedReader::readText)  //Jsonをテキストデータに変換
