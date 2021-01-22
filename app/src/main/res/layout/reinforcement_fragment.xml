@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.nitok_ict.socialgen.socialgen_app.ui.reinforcement.ReinforcementViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -26,25 +26,25 @@ class RankingFragment : Fragment() {
     ): View {
         return RankingFragmentBinding.inflate(inflater, container, false)
             .apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = this@RankingFragment.viewModel
+                lifecycleOwner = viewLifecycleOwner
+                viewModel = this@RankingFragment.viewModel
 
-            rankinRecyclerView.run {
-                layoutManager = LinearLayoutManager(context)
-                addItemDecoration(
-                    DividerItemDecoration(
-                        context,
-                        DividerItemDecoration.VERTICAL
+                rankinRecyclerView.run {
+                    layoutManager = LinearLayoutManager(context)
+                    addItemDecoration(
+                        DividerItemDecoration(
+                            context,
+                            DividerItemDecoration.VERTICAL
+                        )
                     )
-                )
-                adapter =
-                    UserRankListAdapter(viewLifecycleOwner, this@RankingFragment.viewModel).also {
-                        userRankListAdapter = it
-                    }
+                    adapter =
+                        UserRankListAdapter(viewLifecycleOwner, this@RankingFragment.viewModel).also {
+                            userRankListAdapter = it
+                        }
+                }
+            }.run {
+                root
             }
-        }.run {
-            root
-        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

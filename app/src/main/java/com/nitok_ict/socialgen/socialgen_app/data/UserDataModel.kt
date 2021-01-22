@@ -1,14 +1,15 @@
 package com.nitok_ict.socialgen.socialgen_app.data
 
-import android.content.Context
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.nitok_ict.socialgen.socialgen_app.AppContext
 import java.io.BufferedReader
 import java.io.File
 import java.lang.Exception
 
-class UserDataModel (context: Context){
-    val saveDataFile = File(context.filesDir, "saveData.json")  //セーブデータの保存場所
+class UserDataModel {
+
+    private val saveDataFile = File(AppContext.getApplicationContext().filesDir, "saveData.json")  //セーブデータの保存場所
 
     private lateinit var  _userData: UserData
     private var isDataLoaded = false

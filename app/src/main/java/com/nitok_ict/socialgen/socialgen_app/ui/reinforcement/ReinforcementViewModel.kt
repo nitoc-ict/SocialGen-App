@@ -7,11 +7,9 @@ import androidx.lifecycle.*
 import com.nitok_ict.socialgen.socialgen_app.data.UserDataModel
 
 class ReinforcementViewModel(
-    application: Application
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
-    private val context = getApplication<Application>().applicationContext
-    private val userDataModel = UserDataModel(context)
+    private val userDataModel = UserDataModel()
 
     private val _userData = MutableLiveData<UserData>()
     val userData: LiveData<UserData> = _userData.distinctUntilChanged()

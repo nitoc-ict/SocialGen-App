@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nitok_ict.socialgen.socialgen_app.R
 import com.nitok_ict.socialgen.socialgen_app.databinding.ReinforcementFragmentBinding
 
 class ReinforcementFragment : Fragment() {
-    private val viewModel: ReinforcementViewModel by AndroidViewModel(Application)
+    private val viewModel: ReinforcementViewModel by viewModels()
 
     private lateinit var dashboardViewModel: ReinforcementViewModel
 
@@ -27,14 +29,9 @@ class ReinforcementFragment : Fragment() {
             .apply {
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = this@ReinforcementFragment.viewModel
+
+            }.run {
+                root
             }
-        dashboardViewModel =
-                ViewModelProvider(this).get(ReinforcementViewModel::class.java)
-        val root = inflater.inflate(R.layout.reinforcement_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
     }
 }
