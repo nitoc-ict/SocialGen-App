@@ -8,35 +8,28 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.kittinunf.fuel.httpPost
 
-data class UserRank(val userName:String,
-                    val rank:Int,
-                    val score:Long){
+data class UserRank(
+    val rank: Int,
+    val id: String,
+    val userName: String,
+    val score: Long
+){
     fun getRankAsString() = rank.toString()
     fun getScoreAsString() = score.toString()
 }
 
-data class UserData(
-        val rank: Int,
-        val id: String,
-        val userName: String,
-        val score: Long
-)
-
 data class EntryUserData(
-        val name:String,
-        val pref:String
+    val name:String,
+    val pref:String
 )
 
 data class UserResultData(
-        val id: String,
-        val score: String
+    val id: String,
+    val score: String
 )
 
-class ServerCommunicationModel()
+class ServerCommunicationModel
 {
-    private val _userDataList = MediatorLiveData<List<UserData>>()
-    val userDataList:LiveData<List<UserData>> = _userDataList   //Jsonから変換したリスト
-
     private val _userRankList = MediatorLiveData<List<UserRank>>()
     val userRankList:LiveData<List<UserRank>> = _userRankList   //ViewModelが参照するリスト。userDataListをどうにかLiveData<List<UserRank>>に変換して格納して欲しい
 
@@ -44,7 +37,7 @@ class ServerCommunicationModel()
     val userTotalScore:LiveData<String> = _userTotalScore
     fun getRanking(listener:ServerCommunicationInterface){
         listener.onTry()
-        "http://10.0.2.2:5000/ranking?id=1".httpGet().responseString   { request, response, result ->
+        "http://10.0.2.2:5000/ranking?id=1".httpGet().responseString   { result ->
             when (result) {
                 is Result.Failure -> {
                     val ex = result.getException()
@@ -54,12 +47,10 @@ class ServerCommunicationModel()
 
                 is Result.Success -> {
                     val data = result.get()
-                    Log.d("Debug",
-                            "getRanking_Success_origin:$data")
+                    Log.d("Debug", "getRanking_Success_origin:$data")
                     val mapper = jacksonObjectMapper()
-                    this._userDataList.value = mapper.readValue<List<UserData>>(data)
-                    Log.d("Debug",
-                            "getRanking_Success:${this._userDataList.value}")
+                    this._userRankList.value = mapper.readValue(data)
+                    Log.d("Debug", "getRanking_Success:${this._userRankList.value}")
                     listener.onSuccess()
                 }
             }
@@ -68,7 +59,7 @@ class ServerCommunicationModel()
 
     fun getUserTotalScore(listener: ServerCommunicationInterface){
         listener.onTry()
-        "http://10.0.2.2:5000/total".httpGet().responseString{ request, response, result ->
+        "http://10.0.2.2:5000/total".httpGet().responseString{ result ->
             when(result){
                 is Result.Failure -> {
                     val ex = result.getException()
@@ -80,8 +71,7 @@ class ServerCommunicationModel()
                     val data = result.get()
                     Log.d("Debug", "getUserTotalScore_Success_origin:$data")
                     this._userTotalScore.value = data
-                    Log.d("Debug",
-                            "getRanking_Success:${this._userTotalScore.value}")
+                    Log.d("Debug", "getRanking_Success:${this._userTotalScore.value}")
                     listener.onSuccess()
                 }
             }
@@ -94,7 +84,7 @@ class ServerCommunicationModel()
         val data = mapper.writeValueAsString(userData)
         val header: HashMap<String, String> = hashMapOf("Content-Type" to "application/json")
 
-        "http://10.0.2.2:5000/entry_player".httpPost().header(header).body(data).response{request, response, result ->
+        "http://10.0.2.2:5000/entry_player".httpPost().header(header).body(data).response{ _, response, result ->
             when(result){
                 is Result.Failure ->{
                     listener.onFailure()
@@ -117,7 +107,7 @@ class ServerCommunicationModel()
         val data = mapper.writeValueAsString(userResult)
         val header:HashMap<String, String> = hashMapOf("Content-Type" to "application/json")
 
-        "http://10.0.2.2:5000/result".httpPost().header(header).body(data).response{request, response, result ->
+        "http://10.0.2.2:5000/result".httpPost().header(header).body(data).response{ _, response, result ->
             when(result){
                 is Result.Failure ->{
                     listener.onFailure()

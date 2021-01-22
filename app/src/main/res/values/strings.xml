@@ -10,4 +10,7 @@
     <string name="user_total_point">全国の合計</string>
     <string name="retry">再試行</string>
     <string name="load_failed_message">データの取得に失敗しました</string>
+    <string name="user_id">ID:</string>
+    <string name="point_unit">pt</string>
+    <string name="rank_unit">位</string>
 </resources>
