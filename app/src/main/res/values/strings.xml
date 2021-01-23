@@ -3,7 +3,7 @@
     <string name="title_home">ホーム</string>
     <string name="title_reinforcement">強化</string>
     <string name="title_ranking">ランキング</string>
-    <string name="money_unit">円</string>
+    <string name="money_unit">pt</string>
     <string name="money_possession">所持金</string>
     <string name="anti_covid19_point_today">今日のポイント</string>
     <string name="anti_covid19_point_unit">pt</string>
@@ -13,4 +13,12 @@
     <string name="user_id">ID:</string>
     <string name="point_unit">pt</string>
     <string name="rank_unit">位</string>
+    <string name="attackPower">攻撃力</string>
+    <string name="attackSpeed">攻撃速度</string>
+    <string name="hitPoint">体力</string>
+    <string name="spread">弾の拡散</string>
+    <string name="speed">移動速度</string>
+    <string name="Level">Lv.</string>
+    <string name="to_next_level_point_1">次のレベルまで</string>
+    <string name="to_next_level_point_2">pt必要</string>
 </resources>

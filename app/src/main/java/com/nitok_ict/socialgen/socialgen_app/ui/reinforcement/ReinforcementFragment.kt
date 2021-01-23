@@ -1,18 +1,12 @@
 package com.nitok_ict.socialgen.socialgen_app.ui.reinforcement
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.nitok_ict.socialgen.socialgen_app.R
+import androidx.lifecycle.observe
 import com.nitok_ict.socialgen.socialgen_app.databinding.ReinforcementFragmentBinding
 
 class ReinforcementFragment : Fragment() {
@@ -33,5 +27,14 @@ class ReinforcementFragment : Fragment() {
             }.run {
                 root
             }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel.run{
+            saveData.observe(viewLifecycleOwner, {})
+            statusData.observe(viewLifecycleOwner, {})
+        }
     }
 }
