@@ -3,4 +3,14 @@
     <string name="title_home">ホーム</string>
     <string name="title_reinforcement">強化</string>
     <string name="title_ranking">ランキング</string>
+    <string name="money_unit">円</string>
+    <string name="money_possession">所持金</string>
+    <string name="anti_covid19_point_today">今日のポイント</string>
+    <string name="anti_covid19_point_unit">pt</string>
+    <string name="user_total_point">全国の合計</string>
+    <string name="retry">再試行</string>
+    <string name="load_failed_message">データの取得に失敗しました</string>
+    <string name="user_id">ID:</string>
+    <string name="point_unit">pt</string>
+    <string name="rank_unit">位</string>
 </resources>

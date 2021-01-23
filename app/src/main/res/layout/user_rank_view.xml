@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nitok_ict.socialgen.socialgen_app.ui.ranking.RankingViewModel" />
+
+        <variable
+            name="userRank"
+            type="com.nitok_ict.socialgen.socialgen_app.model.UserRank" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_item_ranking_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@{userRank.getRankAsString()}"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rank_unit"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_item_ranking_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{userRank.userName}"
+                android:textSize="24sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4sp"
+                    android:text="@string/user_id"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/text_item_ranking_userID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{userRank.id}"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_item_ranking_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="end"
+            android:text="@{userRank.getScoreAsString()}"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/point_unit"
+            android:textSize="16sp" />
+    </LinearLayout>
+</layout>

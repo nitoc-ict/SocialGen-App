@@ -1,4 +1,4 @@
-package com.nitok_ict.socialgen.socialgen_app.ui.dashboard
+package com.nitok_ict.socialgen.socialgen_app.ui.reinforcement
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.nitok_ict.socialgen.socialgen_app.R
 
-class DashboardFragment : Fragment() {
+class ReinforcementFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var dashboardViewModel: ReinforcementViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -20,8 +20,8 @@ class DashboardFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+                ViewModelProvider(this).get(ReinforcementViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_reinforcement, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
