@@ -4,7 +4,7 @@
     <string name="title_reinforcement">強化</string>
     <string name="title_ranking">ランキング</string>
     <string name="money_unit">pt</string>
-    <string name="money_possession">所持金</string>
+    <string name="money_possession">所持ポイント</string>
     <string name="anti_covid19_point_today">今日のポイント</string>
     <string name="anti_covid19_point_unit">pt</string>
     <string name="user_total_point">全国の合計</string>
@@ -21,4 +21,11 @@
     <string name="Level">Lv.</string>
     <string name="to_next_level_point_1">次のレベルまで</string>
     <string name="to_next_level_point_2">pt必要</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="hand_wash">手洗いをしましたか？</string>
+    <string name="wear_mask">マスクは着用しましたか？</string>
+    <string name="ventilation">換気はしましたか？</string>
+    <string name="social_distance">ソーシャルディスタンスを<br/>保ちましたか？</string>
+    <string name="game_view_content_description">Game view</string>
 </resources>

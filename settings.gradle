@@ -1,2 +1,3 @@
+include ':unityLibrary'
 include ':app'
 rootProject.name = "SocialGen-App"

@@ -1,5 +1,7 @@
 package com.nitok_ict.socialgen.socialgen_app.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.nitok_ict.socialgen.socialgen_app.AppContext
@@ -13,13 +15,14 @@ class SaveDataModel {
         private val SaveData = File(AppContext.getApplicationContext().filesDir, "SaveData.json")                       //セーブデータの保存場所
     }
 
-    private lateinit var  _saveData: SaveData
+    private val _saveData = MutableLiveData<SaveData>().apply { value = loadSaveData() }
+    val saveData : LiveData<SaveData> = _saveData
     private var isSaveDataLoaded = false
 
     fun getUserData(): SaveData {
         if (!isSaveDataLoaded){
             if(!loadSaveData()){
-                _saveData = (SaveData(
+                _saveData.value = (SaveData(
                     "test",
                     "testID",
                     3737,
@@ -33,14 +36,18 @@ class SaveDataModel {
     }
 
     fun setSaveData(saveData: SaveData){
-        _saveData = saveData
+        _saveData.value = saveData
+    }
+
+    fun setMoney(money: Long){
+        _saveData.value!!.money = money
     }
 
     private fun loadSaveData(): Boolean {
         if (SaveData.exists()){
             val mapper = jacksonObjectMapper()
             val json = SaveData.bufferedReader().use(BufferedReader::readText)  //Jsonをテキストデータに変換
-            _saveData = mapper.readValue(json)
+            _saveData.value = mapper.readValue(json)
             isSaveDataLoaded = true
             return true
         } else {

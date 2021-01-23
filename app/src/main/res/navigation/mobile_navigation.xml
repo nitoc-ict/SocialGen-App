@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.nitok_ict.socialgen.socialgen_app.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/home_fragment" >
     </fragment>
 
     <fragment

@@ -8,4 +8,12 @@ data class StatusData(
     val hitPoint: Status,       //体力
     val spread: Status,         //拡散
     val speed:Status            //スピード
-)
+) {
+    fun toStatusDataForUnity() = StatusDataForUnity(
+        attackPower.level,
+        attackSpeed.level,
+        hitPoint.level,
+        spread.level,
+        speed.level
+    )
+}
